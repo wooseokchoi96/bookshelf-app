@@ -22,4 +22,4 @@ TO START: json-server --watch db.json
 5. Add a form that allows the user to add a book to the Book List (this should _NOT_ persist)
 6. Each book can only be added to Book Shelf one time (Book Shelf should not have duplicate books)
 
-![bookshelf gif](bookshelf.gif)
+![bookshelf gif](bookshelfadd.gif)

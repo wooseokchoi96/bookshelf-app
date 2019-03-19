@@ -6,17 +6,8 @@ import Bookshelf from "./containers/Bookshelf";
 
 class App extends Component {
   state = {
-    books: [],
-    filteredBooks: [],
-    bookshelf: [],
-    searchTerm: ""
+    bookshelf: []
   };
-
-  componentDidMount() {
-    fetch("http://localhost:3005/books")
-      .then(resp => resp.json())
-      .then(books => this.setState({ books: books, filteredBooks: books }));
-  }
 
   addToShelf = book => {
     let bookshelf = this.state.bookshelf.includes(book)
@@ -32,22 +23,11 @@ class App extends Component {
       bookshelf: bookshelf
     });
   };
-  filterBooks = e => {
-    console.log("change");
-    let filteredBooks = this.state.books.filter(book =>
-      book.title.toLowerCase().includes(e.target.value.toLowerCase())
-    );
-    this.setState({
-      filteredBooks: filteredBooks,
-      searchTerm: e.target.value
-    });
-  };
 
   render() {
     return (
       <div className="book-container">
         <BookList
-          books={this.state.filteredBooks}
           addToShelf={this.addToShelf}
           searchTerm={this.state.searchTerm}
           filterBooks={this.filterBooks}

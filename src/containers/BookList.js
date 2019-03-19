@@ -1,22 +1,38 @@
 import React, { Component } from "react";
 import Book from "../components/Book";
-import Search from "../components/Search";
+import Form from "../components/Form";
 
-const BookList = props => {
-  let booksList = () => {
-    return props.books.map(book => (
-      <li key={book.id}>
-        <Book book={book} clickHandler={props.addToShelf} />
+class BookList extends Component {
+  state = {
+    books: []
+  };
+
+  componentDidMount() {
+    fetch("http://localhost:3005/books")
+      .then(resp => resp.json())
+      .then(books => this.setState({ books: books }));
+  }
+
+  submitHandler = book => {
+    console.log(book);
+    this.setState({ books: [book, ...this.state.books] });
+  };
+
+  render() {
+    let booksList = this.state.books.map(book => (
+      <li key={book.title}>
+        <Book book={book} clickHandler={this.props.addToShelf} />
       </li>
     ));
-  };
-  return (
-    <div className="book-list">
-      <h1>Book List</h1>
-      <Search changeHandler={props.filterBooks} value={props.searchTerm} />
-      <ul>{booksList()}</ul>
-    </div>
-  );
-};
+
+    return (
+      <div className="book-list">
+        <h1>Book List</h1>
+        <Form submitHandler={this.submitHandler} />
+        <ul>{booksList}</ul>
+      </div>
+    );
+  }
+}
 
 export default BookList;

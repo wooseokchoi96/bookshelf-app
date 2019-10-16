@@ -11,6 +11,7 @@ const BookList = props => {
   return (
     <div className="book-list">
       <h1>Book List</h1>
+      <Search search={props.search}/>
       <ul>{books()}</ul>
     </div>
   );

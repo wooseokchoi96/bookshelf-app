@@ -1,30 +1,20 @@
-import React, { Component } from "react";
+import React from "react";
 import Book from "../components/Book";
 import Search from "../components/Search";
 
-class BookList extends Component {
-  state = {
-    books: []
-  }
+const BookList = props => {
+  
+  const books = () => {
+    return props.books.map(bookObj => <li key={bookObj.id}><Book key={bookObj.id} book={bookObj} clickHandler={props.clickHandler}/></li>)
+  };
 
-  componentDidMount() {
-    fetch("http://localhost:3005/books")
-      .then(resp => resp.json())
-      .then(books => this.setState({ books }))
-  }
+  return (
+    <div className="book-list">
+      <h1>Book List</h1>
+      <ul>{books()}</ul>
+    </div>
+  );
 
-  books = () => {
-    return this.state.books.map(bookObj => <li><Book key={bookObj.id} book={bookObj} /></li>)
-  }
-
-  render() {
-    return (
-      <div className="book-list">
-        <h1>Book List</h1>
-        <ul>{this.books()}</ul>
-      </div>
-    );
-  }
 };
 
 export default BookList;

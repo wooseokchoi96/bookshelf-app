@@ -1,18 +1,13 @@
-import React, { Component } from "react";
-import logo from "./logo.svg";
+import React from "react";
 import "./App.css";
-import BookList from "./containers/BookList";
-import Bookshelf from "./containers/Bookshelf";
+import MainContainer from './containers/MainContainer';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="book-container">
-        <BookList />
-        <Bookshelf />
-      </div>
-    );
-  }
+const App = () => {
+  return (
+    <div className="book-container">
+      <MainContainer />
+    </div>
+  );
 }
 
 export default App;

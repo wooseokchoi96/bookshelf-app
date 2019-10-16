@@ -5,7 +5,7 @@ const Book = props => {
   return (
     <div>
       <h2>{book.title}</h2>
-      <img alt="" src={book.img} />
+      <img alt="" src={book.img} onClick={() => clickHandler(book)}/>
     </div>
   );
 };
